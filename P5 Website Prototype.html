@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>P5 PROJECT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom right, #f9f7f7, #dbe2ef);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .red {
+            color: red;
+            font-weight: bold;
+        }
+        #countdown {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #3f72af;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2c5282;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>P5 PROJECT</h1>
+    <p>Members: Kenzie, Kenneth, Clarissa, Chelsea, Gracelyn Lawrence, Angelia</p>
+    <p class="red">(STILL IN DEVELOPMENT)</p>
+
+    <div id="countdown"></div>
+
+    <div class="container">
+        <h2>Order Now</h2>
+        <form id="orderForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="text" id="class" placeholder="Your Class" required>
+            <textarea id="order" placeholder="What would you like to order?" required></textarea>
+            <button type="submit">Submit Order</button>
+        </form>
+        <p id="message" style="color: green; display: none;">
+            ✅ Thanks for your order! You will receive it on 16 September during the P5.
+        </p>
+    </div>
+
+    <script>
+        // Countdown Timer
+        var targetDate = new Date("Sep 16, 2025 00:00:00").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = targetDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                "Time left until 16 September: " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "We are ready for orders!";
+            }
+        }, 1000);
+
+        // Form Submission (Local only)
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("orderForm").reset();
+            document.getElementById("message").style.display = "block";
+        });
+    </script>
+
+</body>
+</html>
